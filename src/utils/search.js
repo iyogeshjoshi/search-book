@@ -1,7 +1,7 @@
 import data from "../data.json";
 
 /**
- * Searchs and returns K number of book most relevant to
+ * Searches and returns K number of book most relevant to
  * the query provided
  * @param {string} query input query to search
  * @param {int} k no. of results to show
@@ -35,8 +35,18 @@ const search = (query, k, searchIn = "summaries") => {
 
   // sorts array in descending rank order
   result = result.sort((a, b) => b.rank - a.rank);
+  /* result = result.map((val) => {
+    let obj = {
+      ...val,
+      title: data.titles[val.id],
+      author: data.authors[val.id],
+      query: data.queries[val.id],
+    };
 
-  return result.slice(0, k);
+    return obj;
+  }); */
+
+  return formatData(result.slice(0, k));
 };
 
 /**
@@ -69,6 +79,15 @@ function getRanking(query, data) {
     0,
     0
   );
+}
+
+function formatData(values) {
+  return values.map((val) => ({
+    ...val,
+    title: data.titles[val.id],
+    author: data.authors[val.id],
+    query: data.queries[val.id],
+  }));
 }
 
 export default search;

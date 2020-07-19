@@ -1,11 +1,46 @@
 .search-form {
+  display: inline-block;
+  position: relative;
   margin-bottom: 2vmin;
 }
 
-.search-form #query {
+.search-form input {
   padding: 1vmin;
-  font-size: calc(10px + 1vmin);
   border-radius: 5px;
-  width: 95vmin;
+  font-size: calc(10px + 1vmin);
+}
+
+.search-form #query {
+  width: 80vmin;
   min-width: 200px;
+}
+
+.search-form #quantity {
+  width: 10vmin;
+  min-width: 50px;
+  text-align: center;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  color: black;
+  text-align: left;
+  width: 80vmin;
+  box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.2);
+  left: 13vmin;
+  z-index: 1;
+  font-size: calc(10px + 1vmin);
+}
+
+.dropdown.show {
+  display: block;
+}
+
+.dropdown .option {
+  padding: 5px;
+}
+.dropdown .option:hover {
+  background-color: darkgrey;
 }

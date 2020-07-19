@@ -1,32 +1,58 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./style.css";
 
-const Form = ({ titles }) => {
+const Form = ({ books, searchHandler, selectionHandler }) => {
+  const [quantity, setQuantity] = useState(3);
+  const queryRef = useRef(null);
+
   let timeout;
-  const searchHandler = (e) => {
-    const value = e.target.value;
+  const onSearch = (e) => {
+    const targetValue = e.target.value;
     timeout && clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      console.log("search handler called", value);
+    timeout = setTimeout(() => {
+      targetValue && searchHandler(targetValue, quantity);
     }, 500);
   };
+  const onOptionSelect = (book) => {
+    queryRef.current.value = book.title;
+    selectionHandler(book);
+  };
+
   return (
     <>
       <section className="search-form">
+        <input
+          type="number"
+          name="quantity"
+          id="quantity"
+          defaultValue={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+          min={1}
+          title="number of results to show"
+        />
         <input
           type="search"
           list="titles"
           name="query"
           id="query"
           placeholder="search here"
+          title="Enter your input here to search books"
           tabIndex="1"
-          onChange={searchHandler}
+          onChange={onSearch}
+          autoFocus
+          ref={queryRef}
         />
-        <datalist id="titles">
-          {titles.map((title, index) => (
-            <option key={`title-${index}`} value={title} />
+        <div className={`dropdown ${books.length > 0 && "show"}`} id="titles">
+          {books.map((book, index) => (
+            <div
+              key={`title-${index}`}
+              className="option"
+              onClick={() => onOptionSelect(book)}
+            >
+              {book.title}
+            </div>
           ))}
-        </datalist>
+        </div>
       </section>
     </>
   );
