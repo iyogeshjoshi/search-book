@@ -14,7 +14,7 @@ const Form = ({ books, searchHandler, selectionHandler }) => {
     }, 500);
   };
   const onOptionSelect = (book) => {
-    queryRef.current.value = book.title;
+    queryRef.current.value = "";
     selectionHandler(book);
   };
 
@@ -42,6 +42,7 @@ const Form = ({ books, searchHandler, selectionHandler }) => {
           autoFocus
           ref={queryRef}
         />
+        <span> Found: {books.length}</span>
         <div className={`dropdown ${books.length > 0 && "show"}`} id="titles">
           {books.map((book, index) => (
             <div

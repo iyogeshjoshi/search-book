@@ -1,18 +1,17 @@
 import React from "react";
+import Card from "./card";
+import "./style.css";
 
 const BookList = ({ books }) => {
-  console.log(books);
+  console.log([...books.values()]);
 
   return (
     <>
       <section className="search-result">
-        {books.entries((book) => (
-          <>
-            <div>title: {book.title}</div>
-            <div>author: {book.author}</div>
-            <div>{book.summary}</div>
-          </>
-        ))}
+        {books.size > 0 &&
+          [...books.values()].map((book, index) => (
+            <Card key={index} book={book} />
+          ))}
       </section>
     </>
   );

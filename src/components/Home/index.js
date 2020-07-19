@@ -6,7 +6,7 @@ import "./style.css";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
-  const [selections, setSelections] = useState(new Set());
+  const [selections, setSelections] = useState(new Map());
 
   const searchHandler = (query, k) => {
     if (!query) {
@@ -23,8 +23,8 @@ const Home = () => {
   };
 
   const onSelection = (book) => {
-    if (!selections.has(book)) {
-      setSelections(new Set([...selections, book]));
+    if (!selections.has(book.id)) {
+      setSelections(new Map(selections.set(book.id, book)));
     }
     setBooks([]);
   };
