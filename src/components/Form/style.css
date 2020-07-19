@@ -1,0 +1,11 @@
+.search-form {
+  margin-bottom: 2vmin;
+}
+
+.search-form #query {
+  padding: 1vmin;
+  font-size: calc(10px + 1vmin);
+  border-radius: 5px;
+  width: 95vmin;
+  min-width: 200px;
+}
