@@ -42,7 +42,6 @@ const Form = ({ books, searchHandler, selectionHandler }) => {
           autoFocus
           ref={queryRef}
         />
-        <span> Found: {books.length}</span>
         <div className={`dropdown ${books.length > 0 && "show"}`} id="titles">
           {books.map((book, index) => (
             <div

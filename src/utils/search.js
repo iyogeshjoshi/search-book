@@ -28,23 +28,22 @@ const search = (query, k, searchIn = "summaries") => {
    * results with no match (rank = 0)
    */
   let result = datastore.reduce((found = [], elm) => {
-    const rank = getRanking(query, elm.summary);
+    const summaryRank = getRanking(query, elm.summary);
+    const authorRank = getRanking(query, data.authors[elm.id].author);
+    const titleRank = getRanking(query, data.titles[elm.id]);
+    const queryRank = getRanking(query, data.queries[elm.id]);
+    // calculate total rank based on category
+    const rank =
+      0.3 * titleRank +
+      0.3 * authorRank +
+      0.25 * summaryRank +
+      0.15 * queryRank;
 
-    return rank > 0 ? found.concat({ ...elm, rank }) : found;
+    return rank > 0 ? found.concat({ ...elm, rank: rank }) : found;
   }, []);
 
   // sorts array in descending rank order
   result = result.sort((a, b) => b.rank - a.rank);
-  /* result = result.map((val) => {
-    let obj = {
-      ...val,
-      title: data.titles[val.id],
-      author: data.authors[val.id],
-      query: data.queries[val.id],
-    };
-
-    return obj;
-  }); */
 
   return formatData(result.slice(0, k));
 };
@@ -65,8 +64,8 @@ function getRanking(query, data) {
    * create an array of all the word and put it in a set
    * to make a set of unique words
    */
-  const dataWords = new Set(data.split(" "));
-  const queryWords = query.split(" ") || [];
+  const dataWords = new Set(data.split(" ").map((word) => word.toLowerCase()));
+  const queryWords = query.split(" ").map((q) => q.toLowerCase()) || [];
   let queryLength = queryWords.length - 1 || 1;
 
   return queryWords.reduce(
@@ -74,6 +73,9 @@ function getRanking(query, data) {
       if (dataWords.has(word)) {
         return (count += 1 / queryLength);
       }
+      /**
+       * @todo someway to modify rank based on dataWord length matched
+       */
       return count;
     },
     0,

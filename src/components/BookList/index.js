@@ -10,7 +10,7 @@ const BookList = ({ books }) => {
       <section className="search-result">
         {books.size > 0 &&
           [...books.values()].map((book, index) => (
-            <Card key={index} book={book} />
+            <Card index={index} book={book} />
           ))}
       </section>
     </>

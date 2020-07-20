@@ -1,8 +1,8 @@
 import React from "react";
 
-const Card = ({ key, book }) => {
+const Card = ({ index, book }) => {
   return (
-    <div key={`selected-book-${key}`} className="book-card">
+    <div key={`selected-book-${index}`} className="book-card">
       <div className="title" title={book.title}>
         {book.title}
       </div>
