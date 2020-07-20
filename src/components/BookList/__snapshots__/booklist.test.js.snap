@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders BookList correctly matches snapshot 1`] = `
+<section
+  className="search-result"
+/>
+`;

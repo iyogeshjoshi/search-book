@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders properly matches snapshot 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <h2>
+      Search Book
+    </h2>
+  </header>
+  <div
+    className="main-container"
+  >
+    <section
+      className="search-form"
+    >
+      <input
+        defaultValue={3}
+        id="quantity"
+        min={1}
+        name="quantity"
+        onChange={[Function]}
+        title="number of results to show"
+        type="number"
+      />
+      <input
+        autoFocus={true}
+        id="query"
+        list="titles"
+        name="query"
+        onChange={[Function]}
+        placeholder="search here"
+        tabIndex="1"
+        title="Enter your input here to search books"
+        type="search"
+      />
+      <div
+        className="dropdown false"
+        id="titles"
+      />
+    </section>
+    <section
+      className="search-result"
+    />
+  </div>
+</div>
+`;

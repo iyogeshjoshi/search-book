@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Card correctly renders book card 1`] = `
+<div
+  className="book-card"
+>
+  <div
+    className="title"
+    title="sample title"
+  >
+    sample title
+  </div>
+  <div
+    className="author"
+  >
+    By 
+    Some author
+  </div>
+  <div
+    className="summary"
+    title="This is some summary"
+  >
+    This is some summary
+  </div>
+</div>
+`;
